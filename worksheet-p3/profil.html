@@ -21,7 +21,7 @@
     
     <main>
         <section id="bagian-1">
-            <h2>First section heading</h2>
+            <h2>List of Assignments</h2>
             <table border="1">
                 <caption>My assignment and their deadlines</caption>
                 <thead>
@@ -50,8 +50,38 @@
         </section>
     
         <section id="bagian-2">
-        <h2>Second section heading</h2>
-        <!-- your form goes here later (Sheet E) -->
+        <h2>Add Assignment</h2>
+            <form action="/simpan" method="post">
+
+                <p>
+                    <label for="assignment-name">Assignment Name</label>
+                    <input 
+                        type="text" 
+                        id="assignment-name" 
+                        name="assignment-name" 
+                        required
+                    >
+                </p>
+                <p>
+                    <label for="deadline">Deadline</label>
+                    <input 
+                        type="date" 
+                        id="deadline" 
+                        name="deadline" 
+                        required
+                    >
+                </p>
+                <p>
+                    <label for="image">Image URL</label>
+                    <input 
+                        type="url" 
+                        id="image" 
+                        name="image" 
+                        required
+                    >
+                </p>
+                <button type="submit">Save Assignment</button>
+            </form>
         </section>
     </main>
     
