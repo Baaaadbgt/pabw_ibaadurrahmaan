@@ -5,15 +5,15 @@ Development, one folder per meeting.
  
 ## Meeting 3 · My profile page
  
-My page topic: books on my shelf.
+My page topic: My Assignment and Deadline
  
-- Page title: My Bookshelf
-- Description: the books I own and their reading status
-- Navigation links: Book List, Add Book, About Me
-- Two main sections: Book List, Add Book
-- Table columns: title, author, year published, reading status
-- Form columns: title, author, reading status
-- Image: koleksi-1.webp
+- Page title: My Assignment and their deadline
+- Description: Displaying assignment and their specific deadline and completion status
+- Navigation links: Home, My assignment, Add assignment, Set deadline
+- Two main sections: Assignment List, Add Assignment
+- Table columns: Assignment Name, Course, Deadline, Status
+- Form columns: Assignment Name, Course, Deadline, Status
+- Image: assignment-1.webp
  
 ## Note on AI use
  
