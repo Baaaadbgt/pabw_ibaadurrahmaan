@@ -19,7 +19,6 @@
                     </ul>
                 </nav>
         </header>
-    
     <main>
         <section id="bagian-1">
             <h2>List of Assignments</h2>
@@ -59,34 +58,55 @@
         <section id="bagian-2">
         <h2>Add Assignment</h2>
             <form action="/simpan" method="post">
-
-                <p>
-                    <label for="assignment-name">Assignment Name</label>
-                    <input 
-                        type="text" 
-                        id="assignment-name" 
-                        name="assignment-name" 
-                        required
-                    >
-                </p>
-                <p>
-                    <label for="deadline">Deadline</label>
-                    <input 
-                        type="date" 
-                        id="deadline" 
-                        name="deadline" 
-                        required
-                    >
-                </p>
-                <p>
-                    <label for="image">Image URL</label>
-                    <input 
-                        type="url" 
-                        id="image" 
-                        name="image" 
-                        required
-                    >
-                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="assignment-name">Assignment Name</label>
+                            </td>
+                            <td>
+                                <input 
+                                    type="text" 
+                                    id="assignment-name" 
+                                    name="assignment-name" 
+                                    required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="deadline">Deadline</label>
+                            </td>
+                            <td>
+                                <input 
+                                    type="date" 
+                                    id="deadline" 
+                                    name="deadline" 
+                                    required
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="image">Image URL</label>
+                            </td>
+                            <td>
+                                <input 
+                                    type="url" 
+                                    id="image" 
+                                    name="image" 
+                                    required
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <button type="submit">Save Assignment</button>
             </form>
         </section>
