@@ -9,7 +9,6 @@ td {
     color: rgb(29, 6, 6);
 }
 table {
-    border: 1px solid #ccc;
     padding: 3px;
     background-color: #951414;
 }
@@ -17,5 +16,8 @@ th {
     padding: 10px;
     font-family: Tahoma, sans-serif;
     background-color: #ae7272;
-    color: white;
+    color: rgb(26, 11, 11);
+}
+.asing {
+    color: #944d4d;
 }

@@ -1,0 +1,248 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #121212;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background-color: #181818;
+    border-bottom: 2px solid #f5c518;
+    padding: 25px 8%;
+}
+
+h1 {
+    margin: 0 0 15px;
+    color: #f5c518;
+    font-size: 32px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #f5c518;
+    color: #121212;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    width: 85%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section {
+    background-color: #1e1e1e;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    border: 1px solid #333333;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #f5c518;
+    font-size: 24px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #181818;
+}
+
+caption {
+    caption-side: top;
+    text-align: left;
+    margin-bottom: 12px;
+    color: #bbbbbb;
+    font-size: 14px;
+}
+
+th {
+    background-color: #f5c518;
+    color: #121212;
+    padding: 14px;
+    text-align: left;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #333333;
+}
+
+tbody tr {
+    transition: 0.2s;
+}
+
+tbody tr:hover {
+    background-color: #292929;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+td img {
+    display: block;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #f5c518;
+}
+
+/* =========================
+   FORM
+========================= */
+
+form table {
+    margin-bottom: 20px;
+}
+
+form th {
+    background-color: #292929;
+    color: #f5c518;
+}
+
+form td {
+    padding: 16px;
+}
+
+label {
+    font-weight: bold;
+    color: #dddddd;
+}
+
+input {
+    width: 100%;
+    padding: 11px 13px;
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid #444444;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #f5c518;
+    box-shadow: 0 0 0 2px rgba(245, 197, 24, 0.2);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 6px;
+    background-color: #f5c518;
+    color: #121212;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ffd84d;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    background-color: #181818;
+    border-top: 1px solid #333333;
+    color: #999999;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    main {
+        width: 95%;
+    }
+
+    section {
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 600px;
+    }
+}
