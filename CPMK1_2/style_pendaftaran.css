@@ -66,3 +66,7 @@ input[type="checkbox"] {
     width: auto;
     margin-right: 5px;
 }
+
+time:hover {
+    background-color: blanchedalmond;
+}
