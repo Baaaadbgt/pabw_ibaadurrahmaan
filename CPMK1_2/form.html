@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulir Pendaftaran Seminar</title>
+    <link rel="stylesheet" href="style_pendaftaran.css">
+</head>
+
+<body>
+
+    <form>
+
+        <fieldset>
+
+            <legend>Formulir Pendaftaran Seminar</legend>
+
+            <!-- Nama -->
+            <label for="nama">Nama Lengkap:</label>
+            <input 
+                type="text" 
+                id="nama" 
+                name="nama"
+            >
+
+            <!-- Email -->
+            <label for="email">Alamat Email:</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email"
+            >
+
+            <!-- Radio -->
+            <p>Status Kehadiran:</p>
+
+            <div class="option-group">
+                <label>
+                    <input type="radio" name="status" value="online">
+                    Hadir Online
+                </label>
+
+                <label>
+                    <input type="radio" name="status" value="offline">
+                    Hadir Offline
+                </label>
+            </div>
+
+
+            <p>Topik yang Diminati:</p>
+
+            <div class="option-group">
+                <label>
+                    <input type="checkbox" name="topik" value="html">
+                    Dasar-Dasar HTML & CSS
+                </label>
+
+                <label>
+                    <input type="checkbox" name="topik" value="javascript">
+                    JavaScript untuk Pemula
+                </label>
+
+                <label>
+                    <input type="checkbox" name="topik" value="backend">
+                    Pengenalan Back-End
+                </label>
+            </div>
+
+            <!-- Dropdown -->
+            <label for="jadwal">Pilih Jadwal:</label>
+
+            <select id="jadwal" name="jadwal">
+                <option value="pagi">Sesi Pagi</option>
+                <option value="siang">Sesi Siang</option>
+            </select>
+
+
+            <!-- Textarea -->
+            <label for="saran">Saran & Masukan:</label>
+
+            <textarea 
+                id="saran"
+                name="saran"
+                rows="5"
+            ></textarea>
+
+
+            <!-- Button -->
+            <div class="buttons">
+
+                <button type="submit">
+                    Daftar
+                </button>
+
+                <button type="reset">
+                    Reset Formulir
+                </button>
+
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</body>
+</html>
