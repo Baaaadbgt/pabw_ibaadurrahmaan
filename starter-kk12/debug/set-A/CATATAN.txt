@@ -1,0 +1,19 @@
+SET DEBUG A - Toko Roti Mentari
+==============================================
+This page contains EXACTLY 5 errors (spread across index.html and css/style.css).
+
+The behaviour that SHOULD occur once fixed:
+  1. The page uses CSS (the header has a primary background with white text).
+  2. Clicking the Email label moves the cursor into the email input.
+  3. On a small screen (< 48rem) every part stacks in one column; the menu stacks vertically.
+  4. On a screen >= 48rem the menu is horizontal and the layout is two columns: main on the left, the Location aside on the right (16rem), with header and footer full width.
+  5. The aside has a left border in the secondary colour.
+
+How to work:
+  1. Copy this set folder into NIM_Nama/debug/ (do not rename the folder).
+  2. Fix the errors directly in the files.
+  3. Right above or beside every fix, write a comment:
+       HTML : <!-- FIX-1: cause of the error and reason for the fix -->
+       CSS  : /* FIX-1: cause of the error and reason for the fix */
+     Number them FIX-1 to FIX-5.
+  4. Do not rewrite the files from scratch. Changes outside the 5 errors are not marked.

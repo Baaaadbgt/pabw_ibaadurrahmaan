@@ -1,0 +1,19 @@
+SET DEBUG D - Kebun Sayur Segar
+==============================================
+This page contains EXACTLY 5 errors (spread across index.html and css/style.css).
+
+The behaviour that SHOULD occur once fixed:
+  1. Typing 'abc' into Email and clicking Register brings up the browser validation message.
+  2. Clicking Register with an empty Name brings up the browser validation message.
+  3. There is no horizontal scroll at a 360px screen; the inputs do not cross the page edge.
+  4. The header and the footer both have a primary background.
+  5. On a screen >= 48rem: the header is full width, the footer sits in the left column (12rem), and main is in the right column.
+
+How to work:
+  1. Copy this set folder into NIM_Nama/debug/ (do not rename the folder).
+  2. Fix the errors directly in the files.
+  3. Right above or beside every fix, write a comment:
+       HTML : <!-- FIX-1: cause of the error and reason for the fix -->
+       CSS  : /* FIX-1: cause of the error and reason for the fix */
+     Number them FIX-1 to FIX-5.
+  4. Do not rewrite the files from scratch. Changes outside the 5 errors are not marked.
