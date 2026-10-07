@@ -1,0 +1,18 @@
+SET DEBUG B - Rental Buku Pustaka Kita
+==============================================
+This page contains EXACTLY 5 errors (spread across index.html and css/style.css).
+
+The behaviour that SHOULD occur once fixed:
+  1. The page displays correctly on a phone (the width follows the device screen).
+  2. The three menu items (Collection, Rates, Contact) sit inside one navigation list.
+  3. The tariff paragraph has a secondary background with white text.
+  4. On a small screen the book cards stack in one column. On a screen >= 48rem the book cards form three columns and the menu is horizontal.
+
+How to work:
+  1. Copy this set folder into NIM_Nama/debug/ (do not rename the folder).
+  2. Fix the errors directly in the files.
+  3. Right above or beside every fix, write a comment:
+       HTML : <!-- FIX-1: cause of the error and reason for the fix -->
+       CSS  : /* FIX-1: cause of the error and reason for the fix */
+     Number them FIX-1 to FIX-5.
+  4. Do not rewrite the files from scratch. Changes outside the 5 errors are not marked.

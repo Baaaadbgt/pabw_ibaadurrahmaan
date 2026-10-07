@@ -1,0 +1,19 @@
+SET DEBUG E - Kursus Renang Lumba
+==============================================
+This page contains EXACTLY 5 errors (spread across index.html and css/style.css).
+
+The behaviour that SHOULD occur once fixed:
+  1. The document language is declared as English.
+  2. The table header row has a secondary background with white text and is semantically a header cell.
+  3. The picture and the title in the hero are centred.
+  4. The picture does not overflow on a 360px screen (no horizontal scroll).
+  5. On a screen >= 48rem: the hero is full width, then main (left) and the Cost aside (right, 16rem).
+
+How to work:
+  1. Copy this set folder into NIM_Nama/debug/ (do not rename the folder).
+  2. Fix the errors directly in the files.
+  3. Right above or beside every fix, write a comment:
+       HTML : <!-- FIX-1: cause of the error and reason for the fix -->
+       CSS  : /* FIX-1: cause of the error and reason for the fix */
+     Number them FIX-1 to FIX-5.
+  4. Do not rewrite the files from scratch. Changes outside the 5 errors are not marked.

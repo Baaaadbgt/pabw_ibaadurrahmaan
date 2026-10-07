@@ -1,0 +1,19 @@
+SET DEBUG C - Servis Laptop Cepat
+==============================================
+This page contains EXACTLY 5 errors (spread across index.html and css/style.css).
+
+The behaviour that SHOULD occur once fixed:
+  1. The workshop picture displays.
+  2. The heading structure runs in order: h1 then h2 for every section title.
+  3. The opening-hours text is in the secondary colour with a secondary left border.
+  4. The menu links are white on top of the primary header.
+  5. On a screen >= 48rem the menu lays out horizontally.
+
+How to work:
+  1. Copy this set folder into NIM_Nama/debug/ (do not rename the folder).
+  2. Fix the errors directly in the files.
+  3. Right above or beside every fix, write a comment:
+       HTML : <!-- FIX-1: cause of the error and reason for the fix -->
+       CSS  : /* FIX-1: cause of the error and reason for the fix */
+     Number them FIX-1 to FIX-5.
+  4. Do not rewrite the files from scratch. Changes outside the 5 errors are not marked.
