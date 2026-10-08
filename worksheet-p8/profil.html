@@ -1,122 +1,41 @@
 <!DOCTYPE html>
 <html lang="id">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            My assignment and their deadlines
-        </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>My assignment and their deadlines</h1>
-                <nav aria-label="Main navigation">
-                    <ul>
-                        <li><a href="#bagian-1">Link 1</a></li>
-                        <li><a href="#bagian-2">Link 2</a></li>
-                        <li><a href="#bagian-3">Link 3</a></li>
-                    </ul>
-                </nav>
-        </header>
-    <main>
-        <section id="bagian-1">
-            <h2>List of Assignments</h2>
-            <table border="1">
-                <caption>My assignment and their deadlines</caption>
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Assignment</th>
-                        <th>Deadline</th>
-                        <th>Image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Web Development</td>
-                        <td>2023-10-15</td>
-                        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcxs5GebropMjgscSjeiF9pfeJXt3SvtYeG3MIFpjfdA&s=10" alt="Assignment 1" width="100" height="100"></td>
-                    </tr>
-                    <tr>
-                        <td>2</td> 
-                        <td>Civics Education</td>
-                        <td>2023-10-22</td>
-                        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcxs5GebropMjgscSjeiF9pfeJXt3SvtYeG3MIFpjfdA&s=10" alt="Assignment 2" width="100" height="100"></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Computer System and Network</td>
-                        <td>2023-10-29</td>
-                        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcxs5GebropMjgscSjeiF9pfeJXt3SvtYeG3MIFpjfdA&s=10" alt="Assignment 3" width="100" height="100"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    
-        <section id="bagian-2">
-        <h2 class="asing">Add Assignment</h2>
-            <form action="/simpan" method="post">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Field</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="assignment-name">Assignment Name</label>
-                            </td>
-                            <td>
-                                <input 
-                                    type="text" 
-                                    id="assignment-name" 
-                                    name="assignment-name" 
-                                    required
-                                >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="deadline">Deadline</label>
-                            </td>
-                            <td>
-                                <input 
-                                    type="date" 
-                                    id="deadline" 
-                                    name="deadline" 
-                                    required
-                                >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="image">Image URL</label>
-                            </td>
-                            <td>
-                                <input 
-                                    type="url" 
-                                    id="image" 
-                                    name="image" 
-                                    required
-                                >
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="submit">Save Assignment</button>
-            </form>
-        </section>
-    </main>
-    
-    <footer>
-        <p>Muhammad 'Ibaadurrahmaan · 25523213 · 2026</p>
-    </footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya</title>
+    <link rel="stylesheet" href="css/style_profil.css">
+</head>
 
-    <script type="module" src="js/app.js"></script>
-    </body>
+<body>
 
+    <div class="profile-card">
+
+        <h1>Profile</h1>
+
+        <img 
+            src="https://via.placeholder.com/150"
+            alt="Foto Profil"
+            class="profile-photo"
+        >
+
+        <p class="bio">
+            Hello! I am a Computer Science student interested in web development. I enjoy learning new technologies and turning ideas into functional and attractive web applications.
+        </p>
+
+        <h2>My Skills</h2>
+
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul>
+
+        <a href="https://www.instagram.com/muh.ibaad">
+            Click here to see my social media profile
+        </a>
+
+    </div>
+
+</body>
 </html>
