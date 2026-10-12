@@ -8,6 +8,10 @@ const profil = {
     ]
 };
 
+const salinan = {profil};
+
+let {name, role} = profil;
+
 function buatPerkenalan({name, role}) {
     return  '${name} - ${role}.'; 
 }
@@ -49,4 +53,4 @@ console.log(selesaiProjects);
 console.log(catalogProjects);
 console.table(projectlist);
 console.table(profil.skills);
-
+console.log(salinan);
