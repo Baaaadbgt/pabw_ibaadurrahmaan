@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya | PABW Meeting 9</title>
+    <link rel="stylesheet" href="css/style_profil.css">
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/dom.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="brand" href="#">Profil Saya</a>
+            <span class="header-note">PABW · Meeting 9</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="profile-card" aria-labelledby="profile-title">
+            <div class="profile-top">
+                <img
+                    src="https://via.placeholder.com/150"
+                    alt="Foto profil"
+                    class="profile-photo"
+                >
+                <div>
+                    <p class="eyebrow">HELLO, I'M</p>
+                    <h1 id="profile-title">Muh Ibaad</h1>
+                    <p class="profile-subtitle">Computer Science Student · Web Development</p>
+                </div>
+            </div>
+            <p class="bio">
+                Hello! I am a Computer Science student interested in web development.
+                I enjoy learning new technologies and turning ideas into functional
+                and attractive web applications.
+            </p>
+            <a class="social-link" href="https://www.instagram.com/muh.ibaad" target="_blank" rel="noreferrer">
+                Visit my social media profile ↗
+            </a>
+        </section>
+
+        <section class="section-card" aria-labelledby="projects-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">MY WORK</p>
+                    <h2 id="projects-heading">My Projects</h2>
+                    <p class="section-description">Daftar ini dibuat secara dinamis dari data JavaScript.</p>
+                </div>
+            </div>
+
+            <div id="filter" class="filter-row" aria-label="Filter kategori project">
+                <button type="button" class="filter-button active" data-category="all">All</button>
+                <button type="button" class="filter-button" data-category="web">Web Development</button>
+                <button type="button" class="filter-button" data-category="data">Data Science</button>
+                <button type="button" class="filter-button" data-category="network">Networking</button>
+            </div>
+
+            <p id="empty" class="empty-message" hidden>Tidak ada project pada kategori ini.</p>
+            <ul id="list" class="project-list" aria-live="polite"></ul>
+        </section>
+
+        <section class="section-card" aria-labelledby="skills-heading">
+            <p class="eyebrow">WHAT I LEARN</p>
+            <h2 id="skills-heading">My Skills</h2>
+            <div class="skills-list">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Data Science</span>
+            </div>
+        </section>
+
+        <section class="section-card" aria-labelledby="contact-heading">
+            <p class="eyebrow">SAY HELLO</p>
+            <h2 id="contact-heading">Contact Me</h2>
+            <p class="section-description">Form latihan untuk mempraktikkan validasi input.</p>
+
+            <form id="contact-form" novalidate>
+                <div class="form-field">
+                    <label for="name">Nama</label>
+                    <input id="name" name="name" type="text" autocomplete="name" aria-describedby="name-error">
+                    <small id="name-error" class="field-error"></small>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error">
+                    <small id="email-error" class="field-error"></small>
+                </div>
+
+                <div class="form-field">
+                    <label for="message">Pesan</label>
+                    <textarea id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
+                    <small id="message-error" class="field-error"></small>
+                </div>
+
+                <button id="submit-button" class="primary-button" type="submit" disabled>Kirim Pesan</button>
+                <p id="form-success" class="success-message" role="status" hidden>Form valid! Ini hanya demo, pesan belum dikirim ke server.</p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">Built for PABW Meeting 9 · DOM, Events, and Interactivity</div>
+    </footer>
+</body>
+</html>
