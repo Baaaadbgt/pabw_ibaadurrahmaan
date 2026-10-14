@@ -54,3 +54,17 @@ console.log(catalogProjects);
 console.table(projectlist);
 console.table(profil.skills);
 console.log(salinan);
+
+const container = document.querySelector("#list");
+
+function buildCard(project) {
+  const li = document.createElement("li");
+  li.className = "card";
+  li.textContent = project.title;
+
+  return li;
+}
+
+projectlist.forEach((project) => {
+  container.append(buildCard(project));
+});
