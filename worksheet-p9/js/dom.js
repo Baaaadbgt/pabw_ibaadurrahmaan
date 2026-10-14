@@ -1,6 +1,8 @@
-// DOM interactions: this file selects elements and updates the page.
-import { projects, getProjectsByCategory } from "./app.js";
+// DOM layer: reads data from app.js and renders it into HTML.
+import { profile, skills, projects, categories, getProjectsByCategory } from "./app.js";
 
+const profileRoot = document.querySelector("#profile-root");
+const skillsRoot = document.querySelector("#skills-root");
 const container = document.querySelector("#list");
 const filterRow = document.querySelector("#filter");
 const empty = document.querySelector("#empty");
@@ -12,7 +14,87 @@ const messageInput = document.querySelector("#message");
 const submitButton = document.querySelector("#submit-button");
 const successMessage = document.querySelector("#form-success");
 
-// Build one project card safely from one data object.
+// Render profile details from app.js data.
+function renderProfile(data) {
+    const top = document.createElement("div");
+    top.className = "profile-top";
+
+    const photo = document.createElement("img");
+    photo.src = data.photo;
+    photo.alt = "Foto profil";
+    photo.className = "profile-photo";
+
+    const details = document.createElement("div");
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = "HELLO, I'M";
+
+    const title = document.createElement("h1");
+    title.id = "profile-title";
+    title.textContent = data.name;
+
+    const role = document.createElement("p");
+    role.className = "profile-subtitle";
+    role.textContent = data.role;
+
+    details.append(eyebrow, title, role);
+    top.append(photo, details);
+
+    const bio = document.createElement("p");
+    bio.className = "bio";
+    bio.textContent = data.bio;
+
+    const social = document.createElement("a");
+    social.className = "social-link";
+    social.href = data.socialUrl;
+    social.target = "_blank";
+    social.rel = "noreferrer";
+    social.textContent = data.socialLabel;
+
+    profileRoot.replaceChildren(top, bio, social);
+}
+
+// Render skills from an array in app.js.
+function renderSkills(list) {
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = "WHAT I LEARN";
+
+    const heading = document.createElement("h2");
+    heading.id = "skills-heading";
+    heading.textContent = "My Skills";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "skills-list";
+
+    list.forEach((skill) => {
+        const item = document.createElement("span");
+        item.textContent = skill;
+        wrapper.append(item);
+    });
+
+    skillsRoot.replaceChildren(eyebrow, heading, wrapper);
+}
+
+// Create the filter buttons from categories in app.js.
+function renderFilterButtons(list) {
+    filterRow.textContent = "";
+
+    list.forEach((category) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "filter-button";
+        button.dataset.category = category.value;
+        button.textContent = category.label;
+
+        if (category.value === "all") {
+            button.classList.add("active");
+        }
+
+        filterRow.append(button);
+    });
+}
+
 function buildCard(project) {
     const li = document.createElement("li");
     li.className = "card";
@@ -31,7 +113,7 @@ function buildCard(project) {
     return li;
 }
 
-// Clear first, then handle empty state, then render cards.
+// Required render pattern: clear first, check empty state, then build cards.
 function render(list) {
     container.textContent = "";
 
@@ -44,7 +126,7 @@ function render(list) {
     list.forEach((project) => container.append(buildCard(project)));
 }
 
-// One listener on the parent handles all filter buttons.
+// Event delegation: one click listener on the parent for every filter button.
 filterRow.addEventListener("click", (event) => {
     const button = event.target.closest("button");
     if (!button || !filterRow.contains(button)) return;
@@ -59,6 +141,7 @@ filterRow.addEventListener("click", (event) => {
     render(selected);
 });
 
+// Per-field validation.
 const fields = [
     {
         input: nameInput,
@@ -121,12 +204,17 @@ form.addEventListener("submit", (event) => {
 
     successMessage.hidden = false;
     form.reset();
+
     fields.forEach((field) => {
         field.error.textContent = "";
         field.input.removeAttribute("aria-invalid");
     });
+
     submitButton.disabled = true;
 });
 
-// Initial page render.
+// Initial render: all visible profile content and project cards come from app.js.
+renderProfile(profile);
+renderSkills(skills);
+renderFilterButtons(categories);
 render(projects);
