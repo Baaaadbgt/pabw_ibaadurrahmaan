@@ -1,18 +1,29 @@
-// P10 data layer: URL and fetch call exist only in this file.
-const URL = "https://jsonplaceholder.typicode.com/posts?_limit=6";
+// P10: data layer. URL dan satu-satunya pemanggilan fetch() ada di file ini.
+const API_URL = "https://jsonplaceholder.typicode.com/posts?_limit=6";
 
 export async function fetchNews() {
-  try {
-    const response = await fetch(URL);
-    // fetch does not throw for HTTP 404/500, so check response.ok first.
-    if (!response.ok) throw new Error("HTTP status " + response.status);
+  const response = await fetch(API_URL);
 
-    const contentType = response.headers.get("Content-Type") || "";
-    if (!contentType.toLowerCase().includes("application/json")) {
-      throw new Error("Response is not JSON. Content-Type: " + contentType);
-    }
-    return await response.json(); // response body -> JavaScript value
-  } catch (error) {
-    throw new Error("Could not load API data: " + error.message);
+  // fetch() tidak otomatis gagal pada status 404/500.
+  if (!response.ok) {
+    throw new Error(`Permintaan API gagal (HTTP ${response.status}).`);
   }
+
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    throw new Error("Respons API bukan JSON.");
+  }
+
+  let data;
+  try {
+    data = await response.json();
+  } catch {
+    throw new Error("Isi respons tidak dapat dibaca sebagai JSON.");
+  }
+
+  if (!Array.isArray(data)) {
+    throw new Error("Format data API tidak sesuai: seharusnya berupa array.");
+  }
+
+  return data;
 }

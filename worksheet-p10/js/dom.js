@@ -1,65 +1,174 @@
-// P9 DOM layer and form validation. API fetching is not performed here.
-import {profile,skills,projects,categories,createIntroduction,formatSkills,getProjectsByCategory} from "./app.js";
-const profileRoot=document.querySelector("#profile-root");
-const skillsRoot=document.querySelector("#skills-root");
-const projectContainer=document.querySelector("#list");
-const filterRow=document.querySelector("#filter");
-const emptyProjects=document.querySelector("#empty-projects");
+// P9: DOM layer imports data and pure functions from app.js (P8).
+import { profile, skills, projects, categories, createIntroduction, formatSkills, getProjectsByCategory } from "./app.js";
 
-function renderProfile(data){
-  const top=document.createElement("div");top.className="profile-top";
-  const photo=document.createElement("img");photo.src=data.photo;photo.alt=`Profile photo of ${data.name}`;photo.className="profile-photo";
-  const details=document.createElement("div");
-  const eyebrow=document.createElement("p");eyebrow.className="eyebrow";eyebrow.textContent="HELLO, I'M";
-  const title=document.createElement("h1");title.textContent=data.name;
-  const role=document.createElement("p");role.className="profile-subtitle";role.textContent=data.role;
-  details.append(eyebrow,title,role);top.append(photo,details);
-  const intro=document.createElement("p");intro.className="bio";intro.textContent=createIntroduction(data);
-  const bio=document.createElement("p");bio.className="bio";bio.textContent=data.bio;
-  const social=document.createElement("a");social.className="social";social.href=data.socialUrl;social.target="_blank";social.rel="noreferrer";social.textContent=data.socialLabel;
-  profileRoot.replaceChildren(top,intro,bio,social);
+const profileRoot = document.querySelector("#profile-root");
+const skillsRoot = document.querySelector("#skills-root");
+const container = document.querySelector("#list");
+const filterRow = document.querySelector("#filter");
+const empty = document.querySelector("#empty");
+const form = document.querySelector("#contact-form");
+const nameInput = document.querySelector("#name");
+const emailInput = document.querySelector("#email");
+const messageInput = document.querySelector("#message");
+const submitButton = document.querySelector("#submit-button");
+const successMessage = document.querySelector("#form-success");
+
+function renderProfile(data) {
+  const top = document.createElement("div");
+  top.className = "profile-top";
+  const photo = document.createElement("img");
+  photo.src = data.photo;
+  photo.alt = `Foto profil ${data.name}`;
+  photo.className = "profile-photo";
+
+  const details = document.createElement("div");
+  const eyebrow = document.createElement("p");
+  eyebrow.className = "eyebrow";
+  eyebrow.textContent = "HELLO, I'M";
+  const title = document.createElement("h1");
+  title.id = "profile-title";
+  title.textContent = data.name;
+  const role = document.createElement("p");
+  role.className = "profile-subtitle";
+  role.textContent = data.role;
+  details.append(eyebrow, title, role);
+  top.append(photo, details);
+
+  const intro = document.createElement("p");
+  intro.className = "bio";
+  intro.textContent = createIntroduction(data);
+  const bio = document.createElement("p");
+  bio.className = "bio";
+  bio.textContent = data.bio;
+  const social = document.createElement("a");
+  social.className = "social-link";
+  social.href = data.socialUrl;
+  social.target = "_blank";
+  social.rel = "noreferrer";
+  social.textContent = data.socialLabel;
+  profileRoot.replaceChildren(top, intro, bio, social);
 }
-function renderSkills(list){
-  const heading=document.createElement("h2");heading.textContent="My Skills";
-  const wrapper=document.createElement("div");wrapper.className="skills";
-  list.map(skill=>{const span=document.createElement("span");span.textContent=skill;return span;}).forEach(el=>wrapper.append(el));
-  const summary=document.createElement("p");summary.textContent=`Skills: ${formatSkills(list)}`;
-  skillsRoot.replaceChildren(heading,wrapper,summary);
+
+function renderSkills(skillList) {
+  const eyebrow = document.createElement("p");
+  eyebrow.className = "eyebrow";
+  eyebrow.textContent = "WHAT I LEARN";
+  const heading = document.createElement("h2");
+  heading.id = "skills-heading";
+  heading.textContent = "My Skills";
+  const wrapper = document.createElement("div");
+  wrapper.className = "skills-list";
+  const skillElements = skillList.map(skill => {
+    const item = document.createElement("span");
+    item.textContent = skill;
+    return item;
+  });
+  wrapper.append(...skillElements);
+  const summary = document.createElement("p");
+  summary.className = "skill-summary";
+  summary.textContent = `Skills: ${formatSkills(skillList)}`;
+  skillsRoot.replaceChildren(eyebrow, heading, wrapper, summary);
 }
-function renderFilters(list){
-  filterRow.textContent="";
-  list.forEach(c=>{const b=document.createElement("button");b.type="button";b.className="filter-button";b.dataset.category=c.value;b.textContent=c.label;if(c.value==="all")b.classList.add("active");filterRow.append(b);});
+
+function renderFilterButtons(categoryList) {
+  filterRow.textContent = "";
+  categoryList.forEach(category => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "filter-button";
+    button.dataset.category = category.value;
+    button.textContent = category.label;
+    if (category.value === "all") button.classList.add("active");
+    filterRow.append(button);
+  });
 }
-function buildProject(project){
-  const card=document.createElement("li");card.className="card";
-  const title=document.createElement("h3");title.textContent=project.title;
-  const desc=document.createElement("p");desc.textContent=project.description;
-  const tag=document.createElement("span");tag.className="tag";tag.textContent=project.category;
-  const year=document.createElement("small");year.textContent=` · ${project.year}`;
-  card.append(title,desc,tag,year);return card;
+
+function buildCard(project) {
+  const li = document.createElement("li");
+  li.className = "card";
+  const title = document.createElement("h3");
+  title.textContent = project.title;
+  const description = document.createElement("p");
+  description.textContent = project.description;
+  const category = document.createElement("span");
+  category.className = "category-tag";
+  category.textContent = project.category;
+  const year = document.createElement("span");
+  year.className = "project-status";
+  year.textContent = String(project.year);
+  li.append(title, description, category, year);
+  return li;
 }
-function renderProjects(list){
-  projectContainer.textContent="";
-  if(list.length===0){emptyProjects.hidden=false;return;}
-  emptyProjects.hidden=true;list.forEach(p=>projectContainer.append(buildProject(p)));
+
+// P9 render order: clear first, handle empty state, then append cards.
+function render(projectList) {
+  container.textContent = "";
+  if (projectList.length === 0) {
+    empty.hidden = false;
+    return;
+  }
+  empty.hidden = true;
+  projectList.forEach(project => container.append(buildCard(project)));
 }
-filterRow.addEventListener("click",event=>{
-  const button=event.target.closest("button");if(!button||!filterRow.contains(button))return;
-  filterRow.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b===button));
-  renderProjects(getProjectsByCategory(projects,button.dataset.category));
+
+// One listener on the parent handles every filter button.
+filterRow.addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button || !filterRow.contains(button)) return;
+  const selected = getProjectsByCategory(projects, button.dataset.category);
+  filterRow.querySelectorAll("button").forEach(item => {
+    item.classList.toggle("active", item === button);
+  });
+  render(selected);
 });
 
-// P9 form validation.
-const form=document.querySelector("#contact-form");
-const inputs=[
- {input:document.querySelector("#name"),error:document.querySelector("#name-error"),test:v=>v.trim()!=="",message:"Name is required."},
- {input:document.querySelector("#email"),error:document.querySelector("#email-error"),test:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),message:"Enter a valid email."},
- {input:document.querySelector("#message"),error:document.querySelector("#message-error"),test:v=>v.trim()!=="",message:"Message is required."}
+const fields = [
+  { input: nameInput, error: document.querySelector("#name-error"), validate: value => value.trim() !== "", message: "Nama tidak boleh kosong." },
+  { input: emailInput, error: document.querySelector("#email-error"), validate: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()), message: "Masukkan alamat email yang valid." },
+  { input: messageInput, error: document.querySelector("#message-error"), validate: value => value.trim() !== "", message: "Pesan tidak boleh kosong." }
 ];
-const submit=document.querySelector("#submit-button"),success=document.querySelector("#form-success");
-function validateField(f){const ok=f.test(f.input.value);f.error.textContent=ok?"":f.message;if(ok)f.input.removeAttribute("aria-invalid");else f.input.setAttribute("aria-invalid","true");return ok;}
-function validateForm(){const ok=inputs.map(validateField).every(Boolean);submit.disabled=!ok;return ok;}
-inputs.forEach(f=>f.input.addEventListener("input",()=>{validateField(f);validateForm();success.hidden=true;}));
-form.addEventListener("submit",event=>{event.preventDefault();if(!validateForm()){const first=inputs.find(f=>!f.test(f.input.value));if(first)first.input.focus();return;}success.hidden=false;form.reset();inputs.forEach(f=>{f.error.textContent="";f.input.removeAttribute("aria-invalid");});submit.disabled=true;});
 
-renderProfile(profile);renderSkills(skills);renderFilters(categories);renderProjects(projects);
+function validateField(field) {
+  const valid = field.validate(field.input.value);
+  field.error.textContent = valid ? "" : field.message;
+  if (valid) field.input.removeAttribute("aria-invalid");
+  else field.input.setAttribute("aria-invalid", "true");
+  return valid;
+}
+
+function validateForm() {
+  const results = fields.map(validateField);
+  const valid = results.every(Boolean);
+  submitButton.disabled = !valid;
+  return valid;
+}
+
+fields.forEach(field => {
+  field.input.addEventListener("input", () => {
+    validateField(field);
+    validateForm();
+    successMessage.hidden = true;
+  });
+});
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  if (!validateForm()) {
+    const firstInvalid = fields.find(field => !field.validate(field.input.value));
+    if (firstInvalid) firstInvalid.input.focus();
+    return;
+  }
+  successMessage.hidden = false;
+  form.reset();
+  fields.forEach(field => {
+    field.error.textContent = "";
+    field.input.removeAttribute("aria-invalid");
+  });
+  submitButton.disabled = true;
+});
+
+// Initial render: profile, skills, filters, and projects all come from app.js.
+renderProfile(profile);
+renderSkills(skills);
+renderFilterButtons(categories);
+render(projects);

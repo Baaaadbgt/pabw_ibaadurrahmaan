@@ -1,44 +1,80 @@
-# PABW Meeting 8, 9 & 10 — Profile and Async API
+# PABW Meeting 8 + Meeting 9 — Synced Profile Project
 
-## Files
-- `profile.html`: HTML structure and form fields.
-- `css/style_profil.css`: styling.
-- `js/app.js`: P8 data/functions/array methods and P10 caller that handles the page states.
-- `js/dom.js`: P9 DOM rendering, filter event delegation and form validation.
-- `js/api.js`: the single API URL, fetch call, `response.ok`, JSON response parsing, and exported `fetchNews()`.
+## Tujuan
+Project ini menyatukan P8 (JavaScript modern, data, fungsi murni, array methods) dan P9 (DOM, dynamic rendering, event delegation, form validation).
 
-## Run
-Open the folder in VS Code and use Live Server. Do not open using `file://`; ES modules and fetch should run through a local HTTP server. Use Chrome DevTools (F12), Console and Network.
+## Struktur berkas
+- `profile.html`: struktur halaman dan field form. Data profil, skills, project cards, dan filter tidak ditulis satu per satu di HTML.
+- `css/style_profil.css`: styling dan responsive layout.
+- `js/app.js`: sumber data `profile`, `skills`, `projects`, `categories`; dua fungsi murni; `map()`, `filter()`, `find()`; console evidence P8.
+- `js/dom.js`: import data, membangun elemen DOM, event delegation, validasi form.
+- `README.md`: dokumentasi dan deklarasi AI.
 
-## P10 data flow
-`app.js` imports `fetchNews()` from `api.js`; only `api.js` calls `fetch()`. The API URL is declared once in `api.js`. `response.ok` is checked before reading the body. `response.json()` turns response JSON into a JavaScript value. The caller in `app.js` catches errors and shows them on the page.
+## Menjalankan
+1. Buka folder ini di VS Code.
+2. Jalankan `profile.html` menggunakan Live Server.
+3. Buka DevTools (F12) > Console.
+4. Pastikan tidak ada error merah. `app.js` menggunakan `console.table()` untuk data P8.
+5. Tes semua filter dan form P9.
+Jangan membuka HTML dengan klik dua kali (`file://`) karena project menggunakan ES modules.
 
-API: `https://jsonplaceholder.typicode.com/posts?_limit=6` (public, no API key). Used keys: `userId` number, `id` number, `title` string, `body` string.
+## Mengelola data
+Edit `js/app.js`:
+- `profile`: nama, peran, foto, bio, sosial media, dan lokasi.
+- `skills`: daftar keahlian.
+- `projects`: array of objects yang membentuk kartu proyek.
+- `categories`: label dan nilai kategori filter.
+Saat menambah proyek, pastikan nilai `category` cocok dengan salah satu `categories`.
 
-## Four states
-- Loading: shown before the API response arrives.
-- Success: post cards are shown.
-- Failure: error message appears on the page; Try Again is available.
-- Empty: run `renderNews([])` in DevTools Console after the page loads.
+## Kesesuaian P8
+- `const` dan template literals.
+- `??` dan `?.`.
+- Dua fungsi murni: `createIntroduction()` dan `formatSkills()`.
+- Array of objects serta `map()`, `filter()`, `find()`.
+- Salinan array sebelum `sort()` agar data asli tidak berubah.
+- `console.table()` untuk memeriksa data.
 
-## JSON direction
-`JSON.parse(text)` converts JSON text to a JavaScript value. `response.json()` reads/parses a fetch response body. `JSON.stringify(value)` converts a JavaScript value to JSON text.
+## Kesesuaian P9
+- Selector DOM; `createElement()`, `textContent`, `append()`.
+- Container dikosongkan pada awal `render()`.
+- Satu listener pada parent filter; empty state.
+- `preventDefault()`, validasi tiap field, error message, `aria-invalid`, dan tombol submit dinonaktifkan sampai form valid.
 
-## Screenshot tests for Sheet F
-1. Success: online reload, capture the post cards.
-2. Loading: DevTools > Network > Slow 3G, reload and capture while Loading is visible.
-3. Failure: temporarily change URL in `js/api.js` to a nonexistent endpoint or set Network to Offline; capture error message, then restore URL/Online.
-4. Empty: run `renderNews([])` in Console and capture the empty message.
-5. Inspect the Network request headers/status and Elements panel. The URL is only in `api.js`; `fetch(` should appear only there.
+## AI disclosure — sesuaikan dengan proses sebenarnya
+Contoh untuk diedit: “Saya menggunakan AI untuk membantu merancang struktur awal dan menjelaskan beberapa konsep. Saya meninjau, menguji, dan menyesuaikan kode. Bagian yang saya kerjakan sendiri: [tuliskan bagian nyata]. Bagian yang dibantu AI: [jelaskan bantuan nyata].”
+Jangan menulis deklarasi yang tidak sesuai dengan prosesmu. Pastikan dapat menjelaskan kode yang dikumpulkan.
 
-## Hard cases (Sheet E)
-- HTTP 404: `fetch` does not reject solely due to 404; `response.ok` is checked and a custom error is thrown.
-- `await` outside async: invalid syntax; keep `await` inside `async function`.
-- Non-JSON body: `Content-Type` is checked; a non-JSON response becomes a visible failure.
-- Empty array: `renderNews([])` shows a clear empty-state message.
+## Sebelum submit
+- Selesaikan lembar A–F P8 dan P9, termasuk exit ticket dan self-assessment.
+- Uji filter, klik berulang, empty state, dan form.
+- Ambil screenshot Console sesuai worksheet.
+- Buat beberapa commit dengan pesan yang menjelaskan perubahan, lalu push ke GitHub dan periksa repository.
 
-## AI disclosure — edit to reflect your actual work
-Example: “I used AI to help draft and explain parts of this project. I tested and adapted the code. The parts I completed myself were: [state what you actually did]. AI assistance was used for: [state what was actually assisted].” Be truthful and make sure you can explain the code.
 
-## Git
-After each worksheet part, use `git add .`, `git commit -m "P10: ..."` and `git push`. Confirm the `worksheet-p10/` folder appears in your own GitHub repository.
+## Meeting 10 — Fetch, Promise, dan JSON
+
+Folder `worksheet-p10/` adalah salinan kerja untuk Meeting 10. Folder `worksheet-p9/` dalam paket ini dipertahankan sebagai arsip asli dan tidak diubah.
+
+### File tambahan dan perubahan pada salinan P10
+- `js/api.js`: satu-satunya tempat URL API dan `fetch()` berada; memeriksa `response.ok`, tipe konten JSON, serta bentuk data.
+- `js/app.js` (salinan P10): memanggil `fetchNews()` dan merender post dengan `textContent`; menangani loading, success, failure, dan empty state.
+- `profile.html` dan CSS (salinan P10): menambahkan area Latest Posts dan tampilan status.
+
+### Cara menjalankan P10
+1. Buka folder `worksheet-p10/` di VS Code dan jalankan `profile.html` dengan Live Server.
+2. Buka DevTools → Network dan Console. Pastikan request ke `jsonplaceholder.typicode.com` berhasil dan post tampil.
+3. Empty state: di Console jalankan `renderNews([])`.
+4. Failure state: matikan koneksi jaringan lalu klik **Coba lagi**. Pesan gagal akan terlihat pada halaman.
+5. Loading state: di Network pilih throttling seperti Slow 3G, lalu reload.
+6. Pulihkan koneksi dan reload untuk kembali ke success state.
+
+### JSON.parse dan JSON.stringify
+- `JSON.parse(teks)` mengubah teks JSON menjadi nilai JavaScript.
+- `JSON.stringify(nilai)` mengubah nilai JavaScript menjadi teks JSON.
+- Contoh untuk dicoba di Console:
+  `const teks = '{"topic":"P10"}';`
+  `const nilai = JSON.parse(teks);`
+  `JSON.stringify(nilai);`
+
+### AI disclosure
+Sesuaikan deklarasi bantuan AI dengan proses yang benar-benar kamu lakukan. Pastikan kamu memahami fungsi `fetchNews()`, pemeriksaan `response.ok`, `try/catch`, dan empat UI states sebelum mengumpulkan.
