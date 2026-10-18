@@ -1,33 +1,51 @@
-# PABW Meeting 9 — Data-driven Profile Website
+# PABW Meeting 8 + Meeting 9 — Synced Profile Project
 
-## Project overview
-A personal profile website for practicing DOM selection, dynamic rendering, event delegation, and form validation.
+## Tujuan
+Project ini menyatukan P8 (JavaScript modern, data, fungsi murni, array methods) dan P9 (DOM, dynamic rendering, event delegation, form validation).
 
-## Source of the page content
-The profile information, skills, project records, and filter categories are stored in `js/app.js`. `js/dom.js` imports those values and builds the corresponding page elements with DOM methods. The HTML contains structural containers and the form fields required by the worksheet; the individual profile text, skills, filter buttons, and project cards are not hard-coded there.
+## Struktur berkas
+- `profile.html`: struktur halaman dan field form. Data profil, skills, project cards, dan filter tidak ditulis satu per satu di HTML.
+- `css/style_profil.css`: styling dan responsive layout.
+- `js/app.js`: sumber data `profile`, `skills`, `projects`, `categories`; dua fungsi murni; `map()`, `filter()`, `find()`; console evidence P8.
+- `js/dom.js`: import data, membangun elemen DOM, event delegation, validasi form.
+- `README.md`: dokumentasi dan deklarasi AI.
 
-## Files
-- `profile.html`: structural containers and form markup.
-- `css/style_profil.css`: visual styling only.
-- `js/app.js`: data and the category-filtering function.
-- `js/dom.js`: selectors, dynamic rendering, event delegation, and form validation.
+## Menjalankan
+1. Buka folder ini di VS Code.
+2. Jalankan `profile.html` menggunakan Live Server.
+3. Buka DevTools (F12) > Console.
+4. Pastikan tidak ada error merah. `app.js` menggunakan `console.table()` untuk data P8.
+5. Tes semua filter dan form P9.
+Jangan membuka HTML dengan klik dua kali (`file://`) karena project menggunakan ES modules.
 
-## Run
-Open the folder in VS Code and serve `profile.html` using Live Server or another local server. Because the JavaScript uses ES modules, avoid opening the HTML directly as a `file://` URL. Check the browser Console for errors.
+## Mengelola data
+Edit `js/app.js`:
+- `profile`: nama, peran, foto, bio, sosial media, dan lokasi.
+- `skills`: daftar keahlian.
+- `projects`: array of objects yang membentuk kartu proyek.
+- `categories`: label dan nilai kategori filter.
+Saat menambah proyek, pastikan nilai `category` cocok dengan salah satu `categories`.
 
-## Edit the displayed data
-Open `js/app.js`:
-- Update `profile` to change the name, role, photo, bio, and social link.
-- Edit the `skills` array to change the skills list.
-- Add, edit, or remove objects in `projects` to manage the project cards.
-- Edit `categories` to manage the filter buttons. Ensure each project's `category` matches a category value.
+## Kesesuaian P8
+- `const` dan template literals.
+- `??` dan `?.`.
+- Dua fungsi murni: `createIntroduction()` dan `formatSkills()`.
+- Array of objects serta `map()`, `filter()`, `find()`.
+- Salinan array sebelum `sort()` agar data asli tidak berubah.
+- `console.table()` untuk memeriksa data.
 
-## AI disclosure
-Complete this section honestly based on your actual process. Example to adapt: “I used AI to help structure and explain parts of this project. I reviewed and tested the code and adapted it to my needs.” Do not claim work you did not do; make sure you can explain every submitted line.
+## Kesesuaian P9
+- Selector DOM; `createElement()`, `textContent`, `append()`.
+- Container dikosongkan pada awal `render()`.
+- Satu listener pada parent filter; empty state.
+- `preventDefault()`, validasi tiap field, error message, `aria-invalid`, dan tombol submit dinonaktifkan sampai form valid.
 
-## Submission checklist
-- Test all category filters.
-- Verify repeated clicks do not duplicate project cards.
-- Test empty fields, whitespace-only input, invalid email, and valid form submission.
-- Check that the Console has no errors.
-- Complete worksheet Sheets A–F, attach the requested screenshots, and push the complete project to your GitHub repository.
+## AI disclosure — sesuaikan dengan proses sebenarnya
+Contoh untuk diedit: “Saya menggunakan AI untuk membantu merancang struktur awal dan menjelaskan beberapa konsep. Saya meninjau, menguji, dan menyesuaikan kode. Bagian yang saya kerjakan sendiri: [tuliskan bagian nyata]. Bagian yang dibantu AI: [jelaskan bantuan nyata].”
+Jangan menulis deklarasi yang tidak sesuai dengan prosesmu. Pastikan dapat menjelaskan kode yang dikumpulkan.
+
+## Sebelum submit
+- Selesaikan lembar A–F P8 dan P9, termasuk exit ticket dan self-assessment.
+- Uji filter, klik berulang, empty state, dan form.
+- Ambil screenshot Console sesuai worksheet.
+- Buat beberapa commit dengan pesan yang menjelaskan perubahan, lalu push ke GitHub dan periksa repository.
