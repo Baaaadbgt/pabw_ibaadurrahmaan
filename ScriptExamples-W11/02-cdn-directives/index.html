@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>02 - Vue Directives (CDN)</title>
+  <!--
+    EXAMPLE 02: the directives you need most, in one small page (a course list).
+    What it shows : v-bind (:class, :src), v-if / v-else vs v-show, v-for with :key,
+                    v-model (text input + select), computed, watch, methods.
+    How to run    : double-click this file, or "Open with Live Server" in VS Code.
+    Slide topic   : "v-for and v-if: the equivalent of map and filter", "v-model", "computed and watch".
+  -->
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #1e293b; background: #f4f6fb; }
+    h1 { color: #1d3a8c; }
+    .bar { display: flex; gap: .75rem; flex-wrap: wrap; margin: 1rem 0; }
+    input, select { font: inherit; padding: .4rem .6rem; }
+    ul { list-style: none; padding: 0; display: grid; gap: .75rem; }
+    li { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: .75rem 1rem; display: flex; gap: 1rem; align-items: center; }
+    li.full { opacity: .55; }                      /* applied with :class */
+    li img { width: 48px; height: 48px; }
+    .tag { margin-left: auto; font-size: .8rem; background: #e0e7ff; color: #1d3a8c; border-radius: 999px; padding: .15rem .6rem; }
+    .muted { color: #64748b; font-size: .9rem; }
+    .box { background: #fff7dd; border: 1px solid #f1d98b; padding: .5rem .75rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Course catalogue</h1>
+
+    <div class="bar">
+      <!-- v-model: two-way link between the input and the "search" variable -->
+      <input v-model="search" placeholder="Search a course...">
+      <select v-model="level">
+        <option value="all">All levels</option>
+        <option v-for="lv in levels" :key="lv" :value="lv">{{ lv }}</option>
+      </select>
+      <label><input type="checkbox" v-model="hideFull"> Hide full courses</label>
+    </div>
+
+    <!-- computed value: recalculated only when "visible" changes -->
+    <p class="muted">Showing {{ visible.length }} of {{ courses.length }} courses · {{ totalSeats }} seats left</p>
+
+    <!-- v-show only toggles CSS display; v-if adds/removes the element -->
+    <p v-show="search" class="muted">Searching for: "{{ search }}" (this line uses v-show)</p>
+
+    <ul v-if="visible.length">
+      <!-- v-for = the template version of courses.map(...). :key must be unique and stable. -->
+      <li v-for="c in visible" :key="c.id" :class="{ full: c.seats === 0 }">
+        <img :src="c.icon" :alt="c.title">         <!-- v-bind (:) writes a value into an HTML attribute -->
+        <div>
+          <strong>{{ c.title }}</strong><br>
+          <span class="muted">{{ c.seats === 0 ? 'Full' : c.seats + ' seats left' }}</span>
+        </div>
+        <span class="tag">{{ c.level }}</span>
+        <button @click="enrol(c)" :disabled="c.seats === 0">Enrol</button>
+      </li>
+    </ul>
+    <p v-else class="box">No course matches your filter.</p>   <!-- v-else must follow v-if -->
+
+    <p class="muted" v-if="message">{{ message }}</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <script>
+    const { createApp, ref, computed, watch } = Vue;
+
+    // Tiny inline SVG icons, so the example has no extra files
+    const icon = (c) => 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><rect width="48" height="48" rx="10" fill="${c}"/></svg>`);
+
+    createApp({
+      setup() {
+        const courses = ref([
+          { id: 1, title: 'HTML and CSS Basics',     level: 'Beginner',     seats: 12, icon: icon('#38bdf8') },
+          { id: 2, title: 'Modern JavaScript',       level: 'Intermediate', seats: 5,  icon: icon('#facc15') },
+          { id: 3, title: 'DOM and Events',          level: 'Intermediate', seats: 0,  icon: icon('#fb923c') },
+          { id: 4, title: 'Fetch and JSON',          level: 'Intermediate', seats: 8,  icon: icon('#4ade80') },
+          { id: 5, title: 'Vue Components',          level: 'Advanced',     seats: 3,  icon: icon('#a78bfa') },
+          { id: 6, title: 'Build Tools with Vite',   level: 'Advanced',     seats: 0,  icon: icon('#f472b6') }
+        ]);
+        const search = ref('');
+        const level = ref('all');
+        const hideFull = ref(false);
+        const message = ref('');
+
+        const levels = computed(() => [...new Set(courses.value.map(c => c.level))]);
+
+        // computed = a value derived from other values; Vue caches it
+        const visible = computed(() => courses.value.filter(c =>
+          c.title.toLowerCase().includes(search.value.toLowerCase()) &&
+          (level.value === 'all' || c.level === level.value) &&
+          (!hideFull.value || c.seats > 0)));
+        const totalSeats = computed(() => courses.value.reduce((sum, c) => sum + c.seats, 0));
+
+        // methods are plain functions used by event handlers
+        function enrol(course) {
+          if (course.seats > 0) { course.seats--; message.value = 'Enrolled in ' + course.title + '.'; }
+        }
+
+        // watch = run code when a value changes (here: clear the message when the user starts searching)
+        watch(search, () => { message.value = ''; });
+
+        return { courses, search, level, levels, hideFull, visible, totalSeats, message, enrol };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

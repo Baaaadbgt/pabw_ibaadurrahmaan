@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>03 - Vue Components (CDN)</title>
+  <!--
+    EXAMPLE 03: one component used many times.
+    What it shows : defining a component, props (data going DOWN), emit (events going UP), a slot.
+    How to run    : double-click this file, or "Open with Live Server" in VS Code.
+    Slide topic   : "Arguments become props", "props are read-only; changes are written in the parent".
+    Rule of thumb : parent -> child = props.   child -> parent = emit.
+  -->
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #1e293b; background: #f4f6fb; }
+    h1 { color: #1d3a8c; }
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
+    .card { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 1rem; cursor: pointer; }
+    .card.selected { border-color: #1d3a8c; background: #eef2ff; }
+    .card h3 { margin: 0 0 .25rem; }
+    .muted { color: #64748b; font-size: .9rem; }
+    .badge { font-size: .75rem; background: #1d3a8c; color: #fff; border-radius: 999px; padding: .1rem .5rem; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Projects</h1>
+    <p class="muted">Click a card. Selected: <strong>{{ selectedTitle || 'none' }}</strong></p>
+
+    <div class="grid">
+      <!-- The parent passes data with props (:title, :stack) and listens to the child's event (@select) -->
+      <project-card v-for="p in projects" :key="p.id"
+                    :title="p.title" :stack="p.stack" :selected="p.id === selectedId"
+                    @select="selectedId = p.id">
+        <!-- Everything between the tags goes into the child's <slot> -->
+        <span v-if="p.stack.length > 2" class="badge">big</span>
+        {{ p.summary }}
+      </project-card>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <script>
+    const { createApp, ref, computed } = Vue;
+
+    // ---- the child component ----
+    const ProjectCard = {
+      props: {                                   // props: declared inputs. They are READ-ONLY here.
+        title:    { type: String, required: true },
+        stack:    { type: Array,  default: () => [] },
+        selected: { type: Boolean, default: false }
+      },
+      emits: ['select'],                         // events this component may send to its parent
+      template: `
+        <article class="card" :class="{ selected }" @click="$emit('select')">
+          <h3>{{ title }}</h3>
+          <p class="muted">{{ stack.join(' + ') }}</p>
+          <p><slot>No description.</slot></p>
+        </article>`
+    };
+
+    // ---- the parent app ----
+    createApp({
+      components: { ProjectCard },
+      setup() {
+        const projects = ref([
+          { id: 1, title: 'Personal Profile', stack: ['HTML', 'CSS'],               summary: 'A responsive profile page.' },
+          { id: 2, title: 'Book Shop',        stack: ['HTML', 'JavaScript', 'JSON'], summary: 'Books loaded from a JSON file.' },
+          { id: 3, title: 'Task Board',       stack: ['Vue'],                       summary: 'Cards you can filter.' }
+        ]);
+        const selectedId = ref(null);
+        const selectedTitle = computed(() => (projects.value.find(p => p.id === selectedId.value) || {}).title);
+        return { projects, selectedId, selectedTitle };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

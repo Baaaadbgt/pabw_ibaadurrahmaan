@@ -1,0 +1,3 @@
+# Recreated by "npm install" / "npm ci": never commit
+node_modules/
+# (package-lock.json is NOT ignored: it must be committed)
