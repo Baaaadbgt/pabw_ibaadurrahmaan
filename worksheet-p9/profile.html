@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Saya</title>
-  <link rel="stylesheet" href="css/style_profil.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-content">
-      <a class="brand" href="#">Profil Saya</a>
-      <span class="header-note">PABW · Meeting 8 &amp; 9</span>
-    </div>
-  </header>
-      <main class="container">
-   <!-- Konten profil dibuat dari data app.js -->
-        <section id="profile-root" class="profile-card" aria-live="polite"></section>
-        <section class="section-card" aria-labelledby="projects-heading">
-          <p class="eyebrow">MY WORK</p><h2 id="projects-heading">My Projects</h2>
-          <p class="section-description">Kartu proyek dan filter dibuat dari data js/app.js.</p>
-          <div id="filter" class="filter-row" aria-label="Filter kategori proyek"></div>
-          <p id="empty" class="empty-message" hidden>Tidak ada proyek pada kategori ini.</p>
-          <ul id="list" class="project-list" aria-live="polite"></ul>
-        </section>
-        <section id="skills-root" class="section-card" aria-live="polite"></section>
-        <section class="section-card" aria-labelledby="contact-heading">
-          <p class="eyebrow">SAY HELLO</p><h2 id="contact-heading">Contact Me</h2>
-          <p class="section-description">Form latihan validasi input Meeting 9.</p>
-          <form id="contact-form" novalidate>
-            <div class="form-field"><label for="name">Nama</label><input id="name" name="name" type="text" autocomplete="name" aria-describedby="name-error"><small id="name-error" class="field-error"></small></div>
-            <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error"><small id="email-error" class="field-error"></small></div>
-            <div class="form-field"><label for="message">Pesan</label><textarea id="message" name="message" rows="4" aria-describedby="message-error"></textarea><small id="message-error" class="field-error"></small></div>
-            <button id="submit-button" class="primary-button" type="submit" disabled>Kirim Pesan</button>
-            <p id="form-success" class="success-message" role="status" hidden>Form valid! Ini hanya demo; pesan belum dikirim ke server.</p>
-          </form>
-        </section>
-  </main>
-  <footer class="site-footer"><div class="container">PABW · JavaScript Modern, DOM, Events, and Interactivity</div></footer>
-  <script type="module" src="js/app.js"></script>
-  <script type="module" src="js/dom.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya</title>
+    <link rel="stylesheet" href="css/style_profil.css">
+  </head>
+    <body>
+      <header class="site-header">
+        <div class="container header-content">
+          <a class="brand" href="#">Profil Saya</a>
+          <span class="header-note">PABW</span>
+        </div>
+      </header>
+          <main class="container">
+      <!-- Konten profil dibuat dari data app.js -->
+            <section id="profile-root" class="profile-card" aria-live="polite">
+            </section>
+            <section class="section-card" aria-labelledby="projects-heading">
+              <p class="eyebrow">MY WORK</p><h2 id="projects-heading">My Projects</h2>
+              <p class="section-description">Kartu proyek dan filter dibuat dari data js/app.js.</p>
+              <div id="filter" class="filter-row" aria-label="Filter kategori proyek"></div>
+              <p id="empty" class="empty-message" hidden>Tidak ada proyek pada kategori ini.</p>
+              <ul id="list" class="project-list" aria-live="polite"></ul>
+            </section>
+            <section id="skills-root" class="section-card" aria-live="polite"></section>
+            <section class="section-card" aria-labelledby="contact-heading">
+              <p class="eyebrow">SAY HELLO</p><h2 id="contact-heading">Contact Me</h2>
+              <p class="section-description">Form latihan validasi input Meeting 9.</p>
+              <form id="contact-form" novalidate>
+                <div class="form-field"><label for="name">Nama</label><input id="name" name="name" type="text" autocomplete="name" aria-describedby="name-error"><small id="name-error" class="field-error"></small></div>
+                <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error"><small id="email-error" class="field-error"></small></div>
+                <div class="form-field"><label for="message">Pesan</label><textarea id="message" name="message" rows="4" aria-describedby="message-error"></textarea><small id="message-error" class="field-error"></small></div>
+                <button id="submit-button" class="primary-button" type="submit" disabled>Kirim Pesan</button>
+                <p id="form-success" class="success-message" role="status" hidden>Form valid! Ini hanya demo; pesan belum dikirim ke server.</p>
+              </form>
+            </section>
+      </main>
+      <footer class="site-footer"><div class="container">PABW · JavaScript Modern, DOM, Events, and Interactivity</div></footer>
+      <script type="module" src="js/app.js"></script>
+      <script type="module" src="js/dom.js"></script>
+    </body>
 </html>
