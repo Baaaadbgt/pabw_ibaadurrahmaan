@@ -1,0 +1,16 @@
+/* css/style.css -- PROVIDED COMPLETE (including the responsive layout). No change needed. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: #1e293b; background: #f4f6fb; }
+.situs { background: #0f5d5e; color: #fff; padding: 1rem; }
+.situs h1 { margin: 0 0 .5rem; font-size: 1.4rem; }
+#status { margin: 0; min-height: 1.2em; }
+main { padding: 1rem; max-width: 72rem; margin: 0 auto; }
+.alat-cari { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+#cari { padding: .45rem .6rem; font: inherit; flex: 1 1 14rem; max-width: 24rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+#ringkasan { margin: .75rem 0 0; font-weight: 600; color: #334155; }
+#daftar { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 40rem) { #daftar { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64rem) { #daftar { grid-template-columns: repeat(3, 1fr); } }
+.kartu { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem; }
+.kartu h3 { margin: 0 0 .25rem; font-size: 1.05rem; }
+.kartu p { margin: .15rem 0; color: #475569; }

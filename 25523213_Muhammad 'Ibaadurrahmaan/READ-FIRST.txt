@@ -1,0 +1,7 @@
+QUICK GUIDE (one-minute read)
+1. Extract the ZIP. Rename the folder NIM_Nama to your student ID and name, for example 25523042_Budi (the 8-digit ID must come first).
+2. Open the folder in VS Code, right-click index.html and choose "Open with Live Server".
+   (Do not double-click index.html: the browser blocks fetch and modules.)
+3. Do PART A in js/fungsi.js, then PART B in js/api.js and js/app.js. Every file holds a comment with its task.
+4. Check Part A through uji-fungsi.html. Check Part B by looking at the page and the Console.
+5. Fill in the identity comment in index.html. Zip the folder into a file whose name holds your student ID, for example 25523042_Budi.zip, then upload it to Classroom.

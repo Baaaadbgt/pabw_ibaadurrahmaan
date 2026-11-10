@@ -1,0 +1,101 @@
+{
+  "lab": "Integrated Computer Laboratory",
+  "alat": [
+    {
+      "id": 1,
+      "nama": "Projector Epson EB-X51",
+      "merek": "Epson",
+      "jenis": "presentation",
+      "tarif": 50000,
+      "tersedia": 3
+    },
+    {
+      "id": 2,
+      "nama": "Mirrorless Camera Sony A6400",
+      "merek": "Sony",
+      "jenis": "multimedia",
+      "tarif": 120000,
+      "tersedia": 1
+    },
+    {
+      "id": 3,
+      "nama": "Laptop Lenovo ThinkPad E14",
+      "merek": "Lenovo",
+      "jenis": "computer",
+      "tarif": 75000,
+      "tersedia": 4
+    },
+    {
+      "id": 4,
+      "nama": "Clip-On Microphone Boya BY-M1",
+      "merek": "Boya",
+      "jenis": "multimedia",
+      "tarif": 15000,
+      "tersedia": 0
+    },
+    {
+      "id": 5,
+      "nama": "Raspberry Pi 4 Model B",
+      "merek": "Raspberry Pi",
+      "jenis": "microcontroller",
+      "tarif": 20000,
+      "tersedia": 6
+    },
+    {
+      "id": 6,
+      "nama": "Arduino Uno R3 Starter Kit",
+      "merek": "Arduino",
+      "jenis": "microcontroller",
+      "tarif": 10000,
+      "tersedia": 8
+    },
+    {
+      "id": 7,
+      "nama": "Mini Projector Anker Nebula",
+      "merek": "Anker",
+      "jenis": "presentation",
+      "tarif": 40000,
+      "tersedia": 2
+    },
+    {
+      "id": 8,
+      "nama": "Camera Tripod Takara",
+      "merek": "Takara",
+      "jenis": "multimedia",
+      "tarif": 0,
+      "tersedia": 5
+    },
+    {
+      "id": 9,
+      "nama": "Security Demo Kit: XSS & <script>",
+      "merek": "Computer Lab",
+      "jenis": "module",
+      "tarif": 0,
+      "tersedia": 0
+    },
+    {
+      "id": 10,
+      "nama": "Wi-Fi Router TP-Link Archer C6",
+      "merek": "TP-Link",
+      "jenis": "network",
+      "tarif": 25000,
+      "tersedia": 3
+    },
+    {
+      "id": 11,
+      "nama": "LAN Cable Cat6 10 m",
+      "merek": "Belden",
+      "jenis": "network",
+      "tarif": 0,
+      "tersedia": 12
+    },
+    {
+      "id": 12,
+      "nama": "Presentation Pointer Logitech R400",
+      "merek": "Logitech",
+      "jenis": "presentation",
+      "tarif": 5000,
+      "tersedia": 7
+    }
+  ]
+}
