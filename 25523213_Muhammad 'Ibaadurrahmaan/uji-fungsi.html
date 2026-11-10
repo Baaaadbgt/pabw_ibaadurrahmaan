@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Function test (Part A)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+    table { border-collapse: collapse; }
+    td, th { border: 1px solid #cbd5e1; padding: .3rem .7rem; text-align: left; }
+    .ok { color: #166534; font-weight: 700; }
+    .gagal { color: #b91c1c; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Function test (Part A)</h1>
+  <p>Open it through <b>Live Server</b>. These are only some of the cases; the grader uses a fuller set.</p>
+  <table><thead><tr><th>Function</th><th>Case</th><th>Result</th></tr></thead><tbody id="hasil"></tbody></table>
+  <script type="module">
+    import * as f from "./js/fungsi.js";
+    const daftar = await fetch("data/alat.json").then((r) => r.json()).then((d) => d.alat);
+    const kasus = [
+      ["formatTarif", "formatTarif(15000)", () => f.formatTarif(15000), "Rp 15.000/day"],
+      ["formatTarif", "formatTarif(0)", () => f.formatTarif(0), "Free"],
+      ["cariNama", '"PROJECTOR"', () => f.cariNama(daftar, "PROJECTOR").map((x) => x.id), [1,7]],
+      ["cariNama", '"" -> new array', () => f.cariNama(daftar, "") !== daftar && f.cariNama(daftar, "").length === daftar.length, true],
+      ["ringkasAlat", "sample", () => f.ringkasAlat([{nama: "A", tersedia: 2}, {nama: "B", tersedia: 0}, {nama: "C", tersedia: 5}]), {total: 3, unit: 7, habis: ["B"]}],
+    ];
+    const tbody = document.querySelector("#hasil");
+    for (const [fungsi, deskripsi, ambil, harapan] of kasus) {
+      let nilai, ok = false;
+      try { nilai = ambil(); ok = JSON.stringify(nilai) === JSON.stringify(harapan); } catch (g) { nilai = "error: " + g.message; }
+      const tr = document.createElement("tr");
+      [fungsi, deskripsi, ok ? "PASS" : "FAIL (got: " + JSON.stringify(nilai) + ")"].forEach((t, i) => {
+        const td = document.createElement("td"); td.textContent = t; if (i === 2) td.className = ok ? "ok" : "gagal"; tr.append(td);
+      });
+      tbody.append(tr);
+    }
+  </script>
+</body>
+</html>
