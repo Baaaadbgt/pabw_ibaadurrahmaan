@@ -5,7 +5,10 @@
 // formatTarif(angka) -> rupiah text with dots as the thousands separator, ending in "/day". The number 0 -> "Free".
 //   formatTarif(15000) -> "Rp 15.000/day"      formatTarif(0) -> "Free"
 export function formatTarif(angka) {
-  // TODO
+  if (angka === 0) {
+    return "Free";
+  }
+  return `Rp ${angka.toLocaleString("id-ID")}/day`;
 }
 
 // A2
@@ -13,7 +16,11 @@ export function formatTarif(angka) {
 //   Ignore spaces at the start/end of kata. An empty kata ("" or spaces only) -> a copy of the whole list (new array).
 //   No match -> [].   The original array must NOT change.
 export function cariNama(daftar, kata) {
-  // TODO
+  const kataTrimmed = kata.trim().toLowerCase();
+  if (kataTrimmed === "") {
+    return [...daftar];
+  }
+  return daftar.filter(item => item.nama.toLowerCase().includes(kataTrimmed));
 }
 
 // A3
@@ -23,5 +30,8 @@ export function cariNama(daftar, kata) {
 //     -> {total: 3, unit: 7, habis: ["B"]}
 //   Empty list -> {total: 0, unit: 0, habis: []}.   Hint: reduce, filter, map.
 export function ringkasAlat(daftar) {
-  // TODO
+  const total = daftar.length;
+  const unit = daftar.reduce((sum, item) => sum + item.tersedia, 0);
+  const habis = daftar.filter(item => item.tersedia === 0).map(item => item.nama);
+  return { total, unit, habis };
 }

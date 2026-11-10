@@ -4,5 +4,11 @@
 //   2. checks response.ok BEFORE reading the body; when not ok: throw new Error(`status ${response.status}`),
 //   3. returns the ARRAY alat from the JSON (data.alat), not the whole object.
 export async function ambilData() {
-  // TODO
+  const url = "data/alat.json";
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`status ${response.status}`);
+  }
+  const data = await response.json();
+  return data.alat;
 }
