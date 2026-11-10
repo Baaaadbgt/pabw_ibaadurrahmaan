@@ -1,0 +1,44 @@
+body {
+    background-color: lightgray;
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    margin: 0;
+}
+
+.profile-card {
+    background-color: white;
+    width: 300px;
+    padding: 30px;
+
+    text-align: center;
+
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: darkblue;
+    font-size: 25px;
+}
+
+p {
+    color: gray;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+button {
+    background-color: blue;
+    color: white;
+
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
