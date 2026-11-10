@@ -20,9 +20,7 @@ async function showdata() {
     const kosong = document.getElementById("kosong");
     const daftar = document.getElementById("daftar");
     daftar.innerHTML = ""; 
-
     const item = await ambilData();
-    
     item.forEach(alat => {
         const li = document.createElement("li");
         li.className = "kartu";
@@ -40,8 +38,7 @@ async function showdata() {
         li.appendChild(pTersedia);
         daftar.appendChild(li);
     });
-
-    kosong.hidden = item.length > 0; // Show #kosong only when no items are shown
+    kosong.hidden = item.length > 0;
 }
 
 function searchAndSummarize(daftar) {
@@ -60,12 +57,11 @@ async function mulai() {
   updateStatus("Loading data...");
     try {
         const data = await showdata();
-        updateStatus(""); // Clear status on success
+        updateStatus("");
         searchAndSummarize(data);
     }
     catch (error) {
         updateStatus(`Failed to load data: ${error.message}`);
     }
 }
-
 document.addEventListener("DOMContentLoaded", mulai);
