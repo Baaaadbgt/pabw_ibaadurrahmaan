@@ -11,19 +11,37 @@
 //          computed with ringkasAlat from the items CURRENTLY shown.
 // B4 (10) Status in #status: "Loading data..." before the data arrives, then cleared;
 //          on failure: "Failed to load data: <error message>". The error must not reach the Console.
-function showdata(item) {
-  const li = document.createElement("li");
-  li.className = "kartu";
-    const h3 = document.createElement("h3");
-    h3.textContent = item.nama;
-    const pMerek = document.createElement("p");
-    pMerek.textContent = item.merek;
-    const pTarif = document.createElement("p");
-    pTarif.textContent = formatTarif(item.tarif);
-    const pTersedia = document.createElement("p");
-    pTersedia.textContent = item.tersedia > 0 ? `Available: ${item.tersedia} units` : "Not available";
-  li.append(h3, pMerek, pTarif, pTersedia);
-  return li;
+import  { ambilData } from "./api.js";
+import { formatTarif, cariNama, ringkasAlat } from "./fungsi.js";
+
+let currentData = []; 
+
+async function showdata() {
+    const kosong = document.getElementById("kosong");
+    const daftar = document.getElementById("daftar");
+    daftar.innerHTML = ""; 
+
+    const item = await ambilData();
+    
+    item.forEach(alat => {
+        const li = document.createElement("li");
+        li.className = "kartu";
+        const h3 = document.createElement("h3");
+        h3.textContent = alat.nama;
+        const pMerek = document.createElement("p");
+        pMerek.textContent = alat.merek;
+        const pTarif = document.createElement("p");
+        pTarif.textContent = formatTarif(alat.tarif);
+        const pTersedia = document.createElement("p");
+        pTersedia.textContent = alat.tersedia > 0 ? `Available: ${alat.tersedia} units` : "Not available";
+        li.appendChild(h3);
+        li.appendChild(pMerek);
+        li.appendChild(pTarif);
+        li.appendChild(pTersedia);
+        daftar.appendChild(li);
+    });
+
+    kosong.hidden = item.length > 0; // Show #kosong only when no items are shown
 }
 
 function searchAndSummarize(daftar) {
@@ -37,3 +55,17 @@ function updateStatus(message) {
   const statusElem = document.getElementById("status");
   statusElem.textContent = message;
 }
+
+async function mulai() {
+  updateStatus("Loading data...");
+    try {
+        const data = await showdata();
+        updateStatus(""); // Clear status on success
+        searchAndSummarize(data);
+    }
+    catch (error) {
+        updateStatus(`Failed to load data: ${error.message}`);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", mulai);
